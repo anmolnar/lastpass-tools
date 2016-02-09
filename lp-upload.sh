@@ -69,7 +69,7 @@ echo "Template file: $TEMPLATE"
 template_id=$(search_by_name $TEMPLATE)
 echo "Template file ID: $template_id"
 
-#$lp duplicate $template_id
+$lp duplicate $template_id
 echo "Template duplicated"
 
 while true;
