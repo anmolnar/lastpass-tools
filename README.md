@@ -9,7 +9,9 @@ This script is able to store binary files in LastPass Secure Notes with base64 e
 **Parameters**
 
 - -f, --folder
+
 Specifiy destination folder in LastPass.
+
 - -t, --template
 Use template entry to duplicate in LastPass. LP CLI tool is unable to add new entries, so we need an existing one to duplicate. Should be secure note type
 - -u, --upload
