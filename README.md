@@ -9,7 +9,6 @@ This script is able to store binary files in LastPass Secure Notes with base64 e
 **Parameters**
 
 - -f, --folder
-
 Specifiy destination folder in LastPass.
 
 - -t, --template
