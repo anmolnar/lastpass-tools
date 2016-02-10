@@ -1,7 +1,14 @@
 #!/bin/bash
 
-lp="/home/anmolnar/lastpass/lastpass-cli/lpass"
-FOLDER="SSH"
+lp=`which lpass`
+
+if [ ! -e $lp ];
+then
+	echo "Cannot find LastPass cli: $lp"
+	exit 1
+fi
+
+FOLDER=""
 TEXT_MODE=NO
 
 while [[ $# > 0 ]]

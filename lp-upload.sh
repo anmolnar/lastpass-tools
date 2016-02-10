@@ -1,8 +1,15 @@
 #!/bin/bash
 
-lp="/home/anmolnar/lastpass/lastpass-cli/lpass"
-FOLDER="SSH"
-TEMPLATE="xively-dev.pem"
+lp=`which lpass`
+
+if [ ! -e $lp ];
+then
+	echo "Cannot find LastPass cli: $lp"
+	exit 1
+fi
+
+FOLDER=""
+TEMPLATE=""
 TEXT_MODE=NO
 
 while [[ $# > 0 ]]
@@ -56,6 +63,12 @@ then
     exit 1
 fi
 
+if [ "$TEMPLATE" == "" ];
+then
+	echo "You must specify template LastPass entry with -t or --template."
+	exit 1
+fi
+
 echo "Upload file: $UPLOAD_FILE"
 up_basename=`basename $UPLOAD_FILE`
 f_id=$(search_by_name $up_basename)
@@ -65,9 +78,14 @@ then
     exit 1
 fi
 
-echo "Template file: $TEMPLATE"
+echo "Template: $TEMPLATE"
 template_id=$(search_by_name $TEMPLATE)
-echo "Template file ID: $template_id"
+if [[ ! "$template_id" =~ ^[0-9]{18} ]];
+then
+    echo "Cannot find template entry in LastPass: $TEMPLATE"
+    exit 1
+fi
+echo "Template entry ID: $template_id"
 
 $lp duplicate $template_id
 echo "Template duplicated"
@@ -75,7 +93,6 @@ echo "Template duplicated"
 while true;
 do
     new_id=$(search_by_name_except $TEMPLATE $template_id)
-    echo $new_id
     if [[ "$new_id" =~ ^[0-9]{18} ]];
     then
         break;
