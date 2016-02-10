@@ -41,20 +41,20 @@ done
 
 function search_by_name {
     search=`$lp ls $FOLDER | grep "$1 \["`
-    id=`expr "$search" : 'SSH/.*id: \([0-9]*\)'`
+    id=`expr "$search" : "$FOLDER/.*id: \([0-9]*\)"`
     echo $id
 }
 
 function search_by_name_except {
     search=`$lp ls $FOLDER | grep "$1 \[" | grep -v $2`
-    id=`expr "$search" : 'SSH/.*id: \([0-9]*\)'`
+    id=`expr "$search" : "$FOLDER/.*id: \([0-9]*\)"`
     echo $id
 }
 
 if [ "$UPLOAD_FILE" == "" ];
 then
     echo "You must specify the file to upload with -u or --upload-file."
-    exit 0
+    exit 1
 fi
 
 if [ ! -r "$UPLOAD_FILE" ];
@@ -101,7 +101,7 @@ do
     $lp sync
 done
 
-echo "New file ID: $new_id"
+echo "New entry ID: $new_id"
 
 fullname=$FOLDER/$up_basename
 echo $fullname | $lp edit --non-interactive --name $new_id

@@ -38,13 +38,13 @@ done
 if [ "$DOWNLOAD_FILE" == "" ];
 then
     echo "You must specify the file to download with -d or --download-file."
-    exit 0
+    exit 1
 fi
 
 if [ -f "$DOWNLOAD_FILE" ];
 then
     echo "File already exists locally: $DOWNLOAD_FILE"
-    exit 0
+    exit 1
 fi
 
 if [ "$TEXT_MODE" == "YES" ];

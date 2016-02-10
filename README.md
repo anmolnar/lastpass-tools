@@ -9,7 +9,7 @@ This script is able to store binary files in LastPass Secure Notes with base64 e
 
 ## upload
 
-> lp-upload.sh -f FOLDER -t TEMPLATE -u FILE {--text}
+> lp-up.sh
 
 **Parameters**
 
@@ -28,12 +28,12 @@ Upload as text file (no base64 encoding performed). Default is to upload as bina
 **Example**
 
 ```
-./lp-upload.sh -f SSH -t secure-note-tpl -u ssh-key.pem --text
+./lp-up.sh -f SSH -t secure-note-tpl -u ssh-key.pem --text
 ```
 
 ## download
 
-> lp-download.sh -f FOLDER -d FILE {--text}
+> lp-down.sh
 
 **Parameters**
 
@@ -49,6 +49,6 @@ Download as text file (no base64 decoding performed). Default is to download as 
 **Example**
 
 ```
-./lp-download.sh -f SSH -d ssh-key.pem --text
+./lp-down.sh -f SSH -d ssh-key.pem --text
 ```
 
